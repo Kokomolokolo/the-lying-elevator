@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bqkmlmxeirq8d"]
+
+[ext_resource type="Texture2D" uid="uid://bd4hqobvpxnkp" path="res://assets/elevator_shi/elevator_animation.png" id="1_wew3h"]
+[ext_resource type="Script" uid="uid://csp3irwxij3qs" path="res://scripts/elevator_doors.gd" id="2_5c045"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mo2m"]
+atlas = ExtResource("1_wew3h")
+region = Rect2(0, 0, 160, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mrjp"]
+atlas = ExtResource("1_wew3h")
+region = Rect2(160, 0, 160, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skikj"]
+atlas = ExtResource("1_wew3h")
+region = Rect2(320, 0, 160, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nls70"]
+atlas = ExtResource("1_wew3h")
+region = Rect2(480, 0, 160, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyn1r"]
+atlas = ExtResource("1_wew3h")
+region = Rect2(640, 0, 160, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cggas"]
+atlas = ExtResource("1_wew3h")
+region = Rect2(800, 0, 160, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0ddw"]
+atlas = ExtResource("1_wew3h")
+region = Rect2(960, 0, 160, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cocql"]
+atlas = ExtResource("1_wew3h")
+region = Rect2(1120, 0, 160, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7apxx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mo2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mrjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skikj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nls70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyn1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cggas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0ddw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cocql")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 13.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=464449516]
+sprite_frames = SubResource("SpriteFrames_7apxx")
+script = ExtResource("2_5c045")
