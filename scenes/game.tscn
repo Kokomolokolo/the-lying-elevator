@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://edl42pa0vnta"]
+
+[ext_resource type="PackedScene" uid="uid://bqkmlmxeirq8d" path="res://scenes/elevator_doors.tscn" id="1_uwrxv"]
+
+[node name="Game" type="Node2D" unique_id=39994423]
+
+[node name="elevator_doors" parent="." unique_id=464449516 instance=ExtResource("1_uwrxv")]
+position = Vector2(578.00006, 334)
+scale = Vector2(7.2555556, 7.2555556)
