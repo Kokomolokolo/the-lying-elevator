@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caohs16laouie"
-path="res://.godot/imported/purplerainnn_shirt.png-da86abf78ee17169a72c77b6b9f60f5d.ctex"
+uid="uid://b66l0hqw3dmy6"
+path="res://.godot/imported/tag_blue.png-0030795e83bdb099a8d8bde9fbba7c0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/purplerainnn_shirt.png"
-dest_files=["res://.godot/imported/purplerainnn_shirt.png-da86abf78ee17169a72c77b6b9f60f5d.ctex"]
+source_file="res://assets/tags/tag_blue.png"
+dest_files=["res://.godot/imported/tag_blue.png-0030795e83bdb099a8d8bde9fbba7c0d.ctex"]
 
 [params]
 

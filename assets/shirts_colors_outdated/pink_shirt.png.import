@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b66l0hqw3dmy6"
-path="res://.godot/imported/tag_blue.png-231ffd37ae6feb826721c8fdc23c3eb2.ctex"
+uid="uid://juxbys6v44bc"
+path="res://.godot/imported/pink_shirt.png-c973d3052e38d95f168285d143ba3a11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tag_blue.png"
-dest_files=["res://.godot/imported/tag_blue.png-231ffd37ae6feb826721c8fdc23c3eb2.ctex"]
+source_file="res://assets/shirts_colors_outdated/pink_shirt.png"
+dest_files=["res://.godot/imported/pink_shirt.png-c973d3052e38d95f168285d143ba3a11.ctex"]
 
 [params]
 

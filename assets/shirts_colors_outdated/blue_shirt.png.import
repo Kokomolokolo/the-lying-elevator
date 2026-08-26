@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbx6xqkxq7c3d"
-path="res://.godot/imported/blue_hoodie.png-40a16bfd80780fcdc3dd330f70f654cb.ctex"
+uid="uid://da3couoi7v6jh"
+path="res://.godot/imported/blue_shirt.png-1d549c0a3377186002c33cd6e440227a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/blue_hoodie.png"
-dest_files=["res://.godot/imported/blue_hoodie.png-40a16bfd80780fcdc3dd330f70f654cb.ctex"]
+source_file="res://assets/shirts_colors_outdated/blue_shirt.png"
+dest_files=["res://.godot/imported/blue_shirt.png-1d549c0a3377186002c33cd6e440227a.ctex"]
 
 [params]
 

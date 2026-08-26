@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkn5cjyem38pf"
-path="res://.godot/imported/tag_red.png-e8338499ddfe8e8ca82a66f1693fbf54.ctex"
+uid="uid://ckcku6xx5gruo"
+path="res://.godot/imported/black_hoodie.png-cda9ed8b2ceb14dc88b9f2f83348af8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tag_red.png"
-dest_files=["res://.godot/imported/tag_red.png-e8338499ddfe8e8ca82a66f1693fbf54.ctex"]
+source_file="res://assets/hoodies_colors_outdated/black_hoodie.png"
+dest_files=["res://.godot/imported/black_hoodie.png-cda9ed8b2ceb14dc88b9f2f83348af8b.ctex"]
 
 [params]
 
