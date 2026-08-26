@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://kg7byoopoh8"]
+
+[ext_resource type="Script" uid="uid://plx2sb7byyv7" path="res://scripts/character_gen_slim.gd" id="1_pk1rr"]
+[ext_resource type="Texture2D" uid="uid://vq7i1fmvqbwo" path="res://assets/pain_human.png" id="2_q2p6v"]
+[ext_resource type="Texture2D" uid="uid://c35nsplea3t2h" path="res://assets/white_shirt.png" id="3_s0yvh"]
+
+[node name="Character_slim" type="Node2D" unique_id=1336122263]
+script = ExtResource("1_pk1rr")
+
+[node name="BaseBody" type="Sprite2D" parent="." unique_id=2124974252]
+texture = ExtResource("2_q2p6v")
+
+[node name="Hoodie" type="Sprite2D" parent="." unique_id=1156752007]
+
+[node name="Tshirt" type="Sprite2D" parent="." unique_id=440325946]
+texture = ExtResource("3_s0yvh")
+
+[node name="Tag" type="Sprite2D" parent="." unique_id=162634701]

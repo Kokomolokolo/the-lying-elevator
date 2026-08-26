@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://edl42pa0vnta"]
 
 [ext_resource type="PackedScene" uid="uid://bqkmlmxeirq8d" path="res://scenes/elevator_doors.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://kg7byoopoh8" path="res://scenes/character_slim.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node2D" unique_id=39994423]
 
 [node name="elevator_doors" parent="." unique_id=464449516 instance=ExtResource("1_uwrxv")]
 position = Vector2(578.00006, 334)
 scale = Vector2(7.2555556, 7.2555556)
+
+[node name="Character_slim" parent="." unique_id=1336122263 instance=ExtResource("2_yqjtg")]
+z_index = -1
+position = Vector2(593, 426)
+scale = Vector2(5.02, 5.02)
