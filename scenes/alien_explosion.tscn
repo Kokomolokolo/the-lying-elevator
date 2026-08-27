@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b22ct1aywmebl" path="res://assets/Sprite-0003-Sheet.png" id="1_vp3lf"]
 [ext_resource type="Script" uid="uid://ds6o1u38bn7wn" path="res://scripts/alien_explosion.gd" id="2_5winw"]
+[ext_resource type="AudioStream" uid="uid://dysqax6g55sg7" path="res://assets/audio/spash_impact.mp3" id="3_5winw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uvany"]
 atlas = ExtResource("1_vp3lf")
@@ -60,3 +61,8 @@ position = Vector2(580.5, 330.5)
 scale = Vector2(7.24375, 7.1666665)
 sprite_frames = SubResource("SpriteFrames_6fpx7")
 script = ExtResource("2_5winw")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1489047370]
+position = Vector2(580.5, 330.5)
+scale = Vector2(7.24375, 7.1666665)
+stream = ExtResource("3_5winw")
