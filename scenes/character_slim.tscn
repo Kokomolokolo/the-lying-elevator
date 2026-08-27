@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://plx2sb7byyv7" path="res://scripts/character_gen_slim.gd" id="1_pk1rr"]
 [ext_resource type="Texture2D" uid="uid://vq7i1fmvqbwo" path="res://assets/pain_human.png" id="2_q2p6v"]
 [ext_resource type="Texture2D" uid="uid://c35nsplea3t2h" path="res://assets/white_shirt.png" id="3_s0yvh"]
+[ext_resource type="Texture2D" uid="uid://b66l0hqw3dmy6" path="res://assets/tags/tag_blue.png" id="4_s0yvh"]
 
 [node name="Character_slim" type="Node2D" unique_id=1336122263]
 script = ExtResource("1_pk1rr")
@@ -16,6 +17,10 @@ texture = ExtResource("2_q2p6v")
 texture = ExtResource("3_s0yvh")
 
 [node name="Tag" type="Sprite2D" parent="." unique_id=162634701]
+z_index = 1
+position = Vector2(0, -12)
+scale = Vector2(0.455, 0.455)
+texture = ExtResource("4_s0yvh")
 
 [node name="Shoes" type="Sprite2D" parent="." unique_id=1850499079]
 

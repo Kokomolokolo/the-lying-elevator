@@ -9,11 +9,15 @@ extends Node2D
 	"pants": preload("res://assets/hose.png"),
 	"hair": preload("res://assets/normal_hair.png"),
 	"crazy_hair": preload("res://assets/crazy_hair.png"),
+	"tag_red": preload("res://assets/tags/tag_red.png"),
+	"tag_blue": preload("res://assets/tags/tag_blue.png"),
+	"tag_green": preload("res://assets/tags/tag_orange.png"),
+	"tag_orange": preload("res://assets/tags/tag_orange.png"),
 }
 
 @export var appearance_data: Dictionary = {
 	"body": "body_slim",
-	"top_type": "none",
+	"top_type": null,
 	"top_color": Color.WHITE,
 	"tag": null,
 	"tag_color": null,
@@ -21,7 +25,7 @@ extends Node2D
 	"hair_color": Color.BROWN,
 	"shoes": "sneaker", # boots
 	"shoe_color": Color.RED,
-	"pants_color": null,
+	"pants_color": null, # wenn null keine pants
 }
 
 @export var colors: Array[Color] = [
@@ -77,13 +81,22 @@ func rand_pants() -> void:
 func rand_hair() -> void:
 	appearance_data["hair_color"] = hair_color.pick_random()
 	
-	if randf() < 0.5:
+	if randf() < 0.9:
 		appearance_data["hair_type"] = "hair"
 		hair.texture = textures[appearance_data["hair_type"]]
 	else:
 		appearance_data["hair_type"] = "crazy_hair"
-		hair.texture = textures[appearance_data["hair_type"]]
+		hair.texture = textures["crazy_hair"]
 	hair.modulate = appearance_data["hair_color"]
+
+func rand_tag() -> void:	
+	if randf() < 0.8: # 20% für einen tag
+		appearance_data["tag"] = null
+		tag.visible = false
+	else:
+		appearance_data["tag"] = ["tag_blue","tag_red","tag_orange","tag_green"].pick_random()
+		tag.visible = true
+		tag.texture = textures[appearance_data["tag"]]
 
 func rand_top() -> void:
 	var roll: float = randf()
@@ -118,6 +131,7 @@ func randomize_character() -> void:
 	rand_sneaker_or_boots()
 	rand_hair()
 	rand_pants()
+	rand_tag()
 
 
 func _on_doors_animation_finished() -> void:
