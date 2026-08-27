@@ -7,11 +7,9 @@ extends Node2D
 }
 
 @export var appearance_data: Dictionary = {
-	"body": textures["body_slim"],
-	"hoodie_texture": null,
-	"hoodie_color": null,
-	"tshirt_texture": null,
-	"tshirt_color": null,
+	"body": "body_slim",
+	"top_type": "none",
+	"top_color": Color.WHITE,
 	"tag": null,
 }
 
@@ -27,53 +25,47 @@ extends Node2D
 @onready var elevator_doors = $"../elevator_doors"
 
 func rand_color() -> Color:
-	return colors[randi_range(0, len(colors) - 1)]
+	return colors.pick_random()
 
-func rand_tshirt_or_hoodie(type: String) -> void:
-	var chosen_color = rand_color()
-	
-	var color_key: String = type + "_color"
-	var texture_key: String = type + "_texture"
-	
-	appearance_data[color_key] = chosen_color
-	appearance_data[texture_key] = textures[type]
-	
-	var target_sprite: Sprite2D = hoodie if type == "hoodie" else tshirt
-	target_sprite.texture = appearance_data[texture_key]
-	target_sprite.modulate = appearance_data[color_key]
-
+func rand_body() -> void:
+	appearance_data["body"] = "body_slim"
+	base_body.texture = textures[appearance_data["body"]]
 
 func rand_top() -> void:
 	var roll: float = randf()
 
-	if roll < 0.10: # 10% nackt
-		appearance_data["top"] = "none"
+	if roll < 0.10:
+		appearance_data["top_type"] = "none"
+		appearance_data["top_color"] = Color.WHITE
 		tshirt.visible = false
 		hoodie.visible = false
-	elif roll < 0.55: # 45% hoodie
-		appearance_data["top"] = "hoodie"
+	elif roll < 0.55:
 		rand_tshirt_or_hoodie("hoodie")
-		hoodie.visible = true
-		tshirt.visible = false
-	else: # 45% tshirt
-		appearance_data["top"] = "tshirt"
+	else:
 		rand_tshirt_or_hoodie("tshirt")
-		hoodie.visible = false
-		tshirt.visible = true
+
+func rand_tshirt_or_hoodie(type: String) -> void:
+	var chosen_color = rand_color()
+	
+	appearance_data["top_type"] = type
+	appearance_data["top_color"] = chosen_color
+	
+	var active_sprite: Sprite2D = hoodie if type == "hoodie" else tshirt
+	var inactive_sprite: Sprite2D = tshirt if type == "hoodie" else hoodie
+	
+	active_sprite.texture = textures[type]
+	active_sprite.modulate = appearance_data["top_color"]
+	active_sprite.visible = true
+	inactive_sprite.visible = false
 
 func randomize_character() -> void:
+	rand_body()
 	rand_top()
-	base_body.texture = appearance_data["body"]
 
-# zum trollen
 func _on_doors_animation_finished() -> void:
 	if elevator_doors.frame == 0:
 		randomize_character()
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	elevator_doors.animation_finished.connect(_on_doors_animation_finished)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	randomize_character()
