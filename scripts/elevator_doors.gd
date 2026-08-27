@@ -1,5 +1,7 @@
 extends AnimatedSprite2D
 
+@onready var door_sound: AudioStreamPlayer = $door_opening_sound
+
 var is_open: bool = false
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -7,9 +9,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		toggle_doors()
 
 func toggle_doors() -> void:
-	# if is_playing():
-		# return
-		
+	door_sound.play()
+
 	if not is_open:
 		play("default")
 		is_open = true

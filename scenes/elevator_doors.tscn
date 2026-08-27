@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bd4hqobvpxnkp" path="res://assets/elevator_shi/elevator_animation.png" id="1_wew3h"]
 [ext_resource type="Script" uid="uid://csp3irwxij3qs" path="res://scripts/elevator_doors.gd" id="2_5c045"]
+[ext_resource type="AudioStream" uid="uid://l80tbsfvt8dk" path="res://assets/sounds/freesound_community-mechanical-garage-door-opener-door-closing-quad-30083.mp3" id="3_wvg0p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8mo2m"]
 atlas = ExtResource("1_wew3h")
@@ -70,3 +71,6 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=464449516]
 sprite_frames = SubResource("SpriteFrames_7apxx")
 script = ExtResource("2_5c045")
+
+[node name="door_opening_sound" type="AudioStreamPlayer" parent="." unique_id=2107349986]
+stream = ExtResource("3_wvg0p")
