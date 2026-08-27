@@ -3,7 +3,12 @@ extends Node2D
 @export var textures: Dictionary = {
 	"body_slim": preload("res://assets/pain_human.png"),
 	"tshirt": preload("res://assets/white_shirt.png"),
-	"hoodie": preload("res://assets/white_hoodie.png")
+	"hoodie": preload("res://assets/white_hoodie.png"),
+	"sneaker": preload("res://assets/sneaker.png"),
+	"boots": preload("res://assets/boots.png"),
+	"pants": preload("res://assets/hose.png"),
+	"hair": preload("res://assets/normal_hair.png"),
+	"crazy_hair": preload("res://assets/crazy_hair.png"),
 }
 
 @export var appearance_data: Dictionary = {
@@ -11,16 +16,25 @@ extends Node2D
 	"top_type": "none",
 	"top_color": Color.WHITE,
 	"tag": null,
+	"tag_color": null,
+	"hair_type": "normal", # kann auch crazy sein
+	"hair_color": Color.BROWN,
+	"shoes": "sneaker", # boots
+	"shoe_color": Color.RED,
 }
 
 @export var colors: Array[Color] = [
 	Color.RED, Color.WHITE, Color.BLUE, Color.GREEN, Color.VIOLET
 ]
 
+# Die ganzen Kleidungsstücke
 @onready var base_body: Sprite2D = $BaseBody
 @onready var hoodie: Sprite2D = $Hoodie
 @onready var tshirt: Sprite2D = $Tshirt
 @onready var tag: Sprite2D = $Tag
+@onready var pants: Sprite2D = $Pants
+@onready var hair: Sprite2D = $Hair
+@onready var shoes: Sprite2D = $Shoes
 
 @onready var elevator_doors = $"../elevator_doors"
 
@@ -30,6 +44,17 @@ func rand_color() -> Color:
 func rand_body() -> void:
 	appearance_data["body"] = "body_slim"
 	base_body.texture = textures[appearance_data["body"]]
+
+func rand_sneaker_or_boots() -> void:
+	appearance_data["shoe_color"] = colors.pick_random()
+	if randf() < 0.5:
+		appearance_data["shoes"] = "boots"
+		shoes.texture = textures[appearance_data["shoes"]]
+	else:
+		appearance_data["shoes"] = "sneaker"
+		shoes.texture = textures[appearance_data["shoes"]]
+	shoes.modulate = appearance_data["shoe_color"]
+
 
 func rand_top() -> void:
 	var roll: float = randf()
@@ -61,6 +86,7 @@ func rand_tshirt_or_hoodie(type: String) -> void:
 func randomize_character() -> void:
 	rand_body()
 	rand_top()
+	rand_sneaker_or_boots()
 
 
 func _on_doors_animation_finished() -> void:

@@ -11,5 +11,5 @@ scale = Vector2(7.2555556, 7.2555556)
 
 [node name="Character_slim" parent="." unique_id=1336122263 instance=ExtResource("2_yqjtg")]
 z_index = -1
-position = Vector2(593, 426)
+position = Vector2(581, 373)
 scale = Vector2(5.02, 5.02)
