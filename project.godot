@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Lying Elevator"
-run/main_scene="uid://edl42pa0vnta"
+run/main_scene="uid://dlst4j7xhbu5p"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
