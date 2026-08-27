@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b7tr635cffmws"]
+
+[ext_resource type="Script" uid="uid://bulkiv5eaktct" path="res://scripts/explaning.gd" id="1_6c43c"]
+[ext_resource type="Texture2D" uid="uid://ci5t4cwlocyio" path="res://assets/boss.png" id="1_dfmmm"]
+[ext_resource type="Texture2D" uid="uid://d1rw7o6w72nhd" path="res://assets/title_screen/title_screen_wide.png" id="3_yuhpm"]
+[ext_resource type="FontFile" uid="uid://bopciscuog6tq" path="res://assets/PixelOperator8-Bold.ttf" id="4_yuhpm"]
+
+[node name="explaning" type="Node2D" unique_id=809405776]
+script = ExtResource("1_6c43c")
+
+[node name="Boss" type="Sprite2D" parent="." unique_id=383166654]
+z_index = 1
+position = Vector2(920.6666, 347.5)
+rotation = 0.007432904
+scale = Vector2(5.6111107, 5.6111107)
+texture = ExtResource("1_dfmmm")
+
+[node name="TitleScreenWide" type="Sprite2D" parent="." unique_id=659549710]
+position = Vector2(575, 311.00003)
+scale = Vector2(3.5944443, 3.5944445)
+texture = ExtResource("3_yuhpm")
+
+[node name="Label" type="Label" parent="." unique_id=1135513585]
+offset_left = 30.999996
+offset_top = 234.0
+offset_right = 967.0
+offset_bottom = 402.0
+scale = Vector2(2.19, 2.19)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_yuhpm")
+text = "Our company has been 
+infiltrated by monsters!
+
+
+
+
+
+
+
+
+Luckiy, you can tell who is real and who is fake by how they dress. 
+I will update you! 
+As CEO, I leave you in charnge of the elevators. 
+Dont let those aliens on it, or you will be fired!"
