@@ -24,5 +24,9 @@ func _on_button_pressed() -> void:
 		animated_sprite.play()
 		print("alle weg alle weg ich komme")
 		)
+	# Entscheiden ob mensch oder alien getötet
+		
 func _on_button_pressed_in() -> void:
 	print("LetIn")
+	# Hier irgendwie signal das der spieler rein kommt
+	
