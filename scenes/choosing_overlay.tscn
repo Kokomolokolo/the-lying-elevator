@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://sgrqm18334oo" path="res://assets/erase.png" id="1_jvsem"]
 [ext_resource type="Texture2D" uid="uid://c4c6fok6navp7" path="res://assets/let-in.png" id="2_40buy"]
 [ext_resource type="Texture2D" uid="uid://77smtn16cf7l" path="res://assets/gun_shooting.png" id="3_gldhr"]
+[ext_resource type="PackedScene" uid="uid://dfydk42xlugb6" path="res://scenes/human_explosion.tscn" id="5_c17yw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c17yw"]
 atlas = ExtResource("3_gldhr")
@@ -59,8 +60,8 @@ animations = [{
 script = ExtResource("1_40buy")
 
 [node name="Erase" type="Sprite2D" parent="." unique_id=1747344894]
-position = Vector2(891.00006, 508.00006)
-scale = Vector2(2.5, 2.5)
+position = Vector2(943, 536)
+scale = Vector2(1.5603887, 1.5603888)
 texture = ExtResource("1_jvsem")
 
 [node name="Button" type="Button" parent="Erase" unique_id=2050242087]
@@ -69,15 +70,11 @@ offset_left = -65.20001
 offset_top = -31.600021
 offset_right = 65.599976
 offset_bottom = 37.199966
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Erase" unique_id=1118914663]
-position = Vector2(-122.00002, 103.59997)
-scale = Vector2(0.272, 0.272)
-sprite_frames = SubResource("SpriteFrames_2t64r")
+metadata/_edit_use_anchors_ = true
 
 [node name="LetIn" type="Sprite2D" parent="." unique_id=551897915]
-position = Vector2(250, 499.00003)
-scale = Vector2(2.514, 2.514)
+position = Vector2(200.00002, 537)
+scale = Vector2(1.5777776, 1.5777776)
 texture = ExtResource("2_40buy")
 
 [node name="Button" type="Button" parent="LetIn" unique_id=1103025720]
@@ -86,6 +83,16 @@ offset_left = -67.22354
 offset_top = -29.0374
 offset_right = 68.41687
 offset_bottom = 36.595062
+metadata/_edit_use_anchors_ = true
+
+[node name="Gun" type="AnimatedSprite2D" parent="." unique_id=1118914663]
+position = Vector2(585.00006, 743)
+scale = Vector2(0.3909121, 0.39091212)
+sprite_frames = SubResource("SpriteFrames_2t64r")
+frame_progress = 0.648384
+
+[node name="human_explosion" parent="." unique_id=2065610309 instance=ExtResource("5_c17yw")]
+visible = false
 
 [connection signal="pressed" from="Erase/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="LetIn/Button" to="." method="_on_button_pressed_in"]

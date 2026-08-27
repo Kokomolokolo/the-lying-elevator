@@ -1,40 +1,46 @@
 extends Node2D
 
-@onready var animated_sprite: AnimatedSprite2D = $Erase/AnimatedSprite2D
+@onready var gun: AnimatedSprite2D = $Gun
+@onready var human_explosion: Node2D = $human_explosion
 
-@export var target_position: Vector2 = Vector2(-125, -10)
+@export var target_position: Vector2 = Vector2(592, 553)
 @export var move_duration: float = 1.0
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var forbidden_top_type: String = "tshirt"
+var forbidden_color: Color = Color.WHITE
 
+func is_character_allowed() -> bool:
+	var character = get_tree().get_first_node_in_group("character")
+	if character: 
+		if character.aperance_data["top_type"] == forbidden_top_type:
+			return false
+		
+		if character.appearance_data["top_type"] != "none" and character.aperance_data["top_color"] == forbidden_color:
+			return false
+	return true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func _on_button_pressed() -> void:
 	print("JLKDFKJ")
 	var tween := create_tween()
-	
-	tween.tween_property(animated_sprite, "position", target_position, move_duration)
+	tween.tween_property(gun, "position", target_position, move_duration)
 
 	tween.finished.connect(func ():
-		animated_sprite.play()
+		gun.play()
+		if is_character_allowed():
+			print("dumbo gekackt")
+			human_explosion.visible = true
+			human_explosion.play_splatter()
+		else:
+			print("premium geschafft")
 		print("alle weg alle weg ich komme")
-		)
-	# Entscheiden ob mensch oder alien getötet
+	)
+	self.visible = false
 		
 func _on_button_pressed_in() -> void:
-	var checker = get_tree().get_first_node_in_group("checker")
-	if checker:
-		if checker.is_chatacter_allowed():
-			print("LetIn")
-		else:
-			print("not allowed")
-	else: 
-		print("no checker")
+	if is_character_allowed():
+		print("LetIn")
+	else:
+		print("not allowed")
 			
 	# Hier irgendwie signal das der spieler rein kommt
 	

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c74uwe37vc1ph" path="res://assets/human_explosion-Sheet.png" id="1_2qfe1"]
 [ext_resource type="Script" uid="uid://dwxajwb8svssm" path="res://scripts/human_explosion.gd" id="2_l6vd5"]
+[ext_resource type="AudioStream" uid="uid://dysqax6g55sg7" path="res://assets/audio/spash_impact.mp3" id="3_afvdi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6vd5"]
 atlas = ExtResource("1_2qfe1")
@@ -54,10 +55,12 @@ animations = [{
 }]
 
 [node name="human_explosion" type="Node2D" unique_id=2065610309]
+script = ExtResource("2_l6vd5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=127592712]
 position = Vector2(575, 321.99997)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_p0mry")
-frame_progress = 0.4839945
-script = ExtResource("2_l6vd5")
+
+[node name="Splatter_sound" type="AudioStreamPlayer" parent="AnimatedSprite2D" unique_id=1073947515]
+stream = ExtResource("3_afvdi")

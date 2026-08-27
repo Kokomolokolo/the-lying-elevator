@@ -1,14 +1,8 @@
-extends AnimatedSprite2D
+extends Node2D
 
-@onready var gun_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var animation_player: AnimatedSprite2D = $Splatter
+@onready var splatter_sound: AudioStreamPlayer = $Splatter_sound
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	gun_sound.play()
-	self.play()
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func play_splatter() -> void:
+	splatter_sound.play()
+	animation_player.play()
