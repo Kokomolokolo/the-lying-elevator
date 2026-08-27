@@ -27,6 +27,14 @@ func _on_button_pressed() -> void:
 	# Entscheiden ob mensch oder alien getötet
 		
 func _on_button_pressed_in() -> void:
-	print("LetIn")
+	var checker = get_tree().get_first_node_in_group("checker")
+	if checker:
+		if checker.is_chatacter_allowed():
+			print("LetIn")
+		else:
+			print("not allowed")
+	else: 
+		print("no checker")
+			
 	# Hier irgendwie signal das der spieler rein kommt
 	

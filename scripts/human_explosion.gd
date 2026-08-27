@@ -6,7 +6,6 @@ extends AnimatedSprite2D
 func _ready() -> void:
 	gun_sound.play()
 	self.play()
-	
 
 
 

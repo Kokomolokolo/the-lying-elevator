@@ -62,10 +62,13 @@ func randomize_character() -> void:
 	rand_body()
 	rand_top()
 
+
 func _on_doors_animation_finished() -> void:
 	if elevator_doors.frame == 0:
 		randomize_character()
+		
 
 func _ready() -> void:
+	add_to_group("character")
 	elevator_doors.animation_finished.connect(_on_doors_animation_finished)
 	randomize_character()

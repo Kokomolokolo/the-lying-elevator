@@ -81,7 +81,7 @@ scale = Vector2(2.514, 2.514)
 texture = ExtResource("2_40buy")
 
 [node name="Button" type="Button" parent="LetIn" unique_id=1103025720]
-visible = false
+show_behind_parent = true
 offset_left = -67.22354
 offset_top = -29.0374
 offset_right = 68.41687
