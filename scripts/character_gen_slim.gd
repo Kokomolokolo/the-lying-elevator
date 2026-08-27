@@ -21,10 +21,19 @@ extends Node2D
 	"hair_color": Color.BROWN,
 	"shoes": "sneaker", # boots
 	"shoe_color": Color.RED,
+	"pants_color": null,
 }
 
 @export var colors: Array[Color] = [
 	Color.RED, Color.WHITE, Color.BLUE, Color.GREEN, Color.VIOLET
+]
+
+@export var hair_color: Array[Color] = [
+	Color.MAROON, Color.YELLOW, Color.ORANGE, Color.BLACK
+]
+
+@export var pants_color: Array[Color] = [
+	Color.DARK_BLUE, Color.BEIGE, Color.LIGHT_BLUE, Color.BLACK
 ]
 
 # Die ganzen Kleidungsstücke
@@ -55,6 +64,26 @@ func rand_sneaker_or_boots() -> void:
 		shoes.texture = textures[appearance_data["shoes"]]
 	shoes.modulate = appearance_data["shoe_color"]
 
+func rand_pants() -> void:
+	if randf() < 0.9: # 10% das ohne Hose
+		appearance_data["pants_color"] = pants_color.pick_random()
+		pants.texture = textures["pants"]
+		pants.modulate = appearance_data["pants_color"]
+		pants.visible = true
+	else:
+		appearance_data["pants_color"] = null
+		pants.visible = false
+
+func rand_hair() -> void:
+	appearance_data["hair_color"] = hair_color.pick_random()
+	
+	if randf() < 0.5:
+		appearance_data["hair_type"] = "hair"
+		hair.texture = textures[appearance_data["hair_type"]]
+	else:
+		appearance_data["hair_type"] = "crazy_hair"
+		hair.texture = textures[appearance_data["hair_type"]]
+	hair.modulate = appearance_data["hair_color"]
 
 func rand_top() -> void:
 	var roll: float = randf()
@@ -87,6 +116,8 @@ func randomize_character() -> void:
 	rand_body()
 	rand_top()
 	rand_sneaker_or_boots()
+	rand_hair()
+	rand_pants()
 
 
 func _on_doors_animation_finished() -> void:
