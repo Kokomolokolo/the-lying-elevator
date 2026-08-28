@@ -3,8 +3,8 @@ extends AnimatedSprite2D
 @onready var door_sound: AudioStreamPlayer = $door_opening_sound
 @onready var choosing_buttons: Node2D = $choosing
 
-var is_open: bool = false
-var choosing: bool = false
+@export var is_open: bool = false
+@export var choosing: bool = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):

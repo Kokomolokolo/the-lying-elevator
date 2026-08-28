@@ -11,7 +11,7 @@ extends Node2D
 	"crazy_hair": preload("res://assets/crazy_hair.png"),
 	"tag_red": preload("res://assets/tags/tag_red.png"),
 	"tag_blue": preload("res://assets/tags/tag_blue.png"),
-	"tag_green": preload("res://assets/tags/tag_orange.png"),
+	"tag_green": preload("res://assets/tags/tag_green.png"),
 	"tag_orange": preload("res://assets/tags/tag_orange.png"),
 }
 

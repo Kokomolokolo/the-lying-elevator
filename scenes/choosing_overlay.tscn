@@ -60,8 +60,8 @@ animations = [{
 script = ExtResource("1_40buy")
 
 [node name="Erase" type="Sprite2D" parent="." unique_id=1747344894]
-position = Vector2(943, 536)
-scale = Vector2(1.5603887, 1.5603888)
+position = Vector2(890.7489, 506.60876)
+scale = Vector2(2.2135274, 2.2135274)
 texture = ExtResource("1_jvsem")
 
 [node name="Button" type="Button" parent="Erase" unique_id=2050242087]
@@ -73,8 +73,8 @@ offset_bottom = 37.199966
 metadata/_edit_use_anchors_ = true
 
 [node name="LetIn" type="Sprite2D" parent="." unique_id=551897915]
-position = Vector2(200.00002, 537)
-scale = Vector2(1.5777776, 1.5777776)
+position = Vector2(234.00003, 505)
+scale = Vector2(2.214, 2.214)
 texture = ExtResource("2_40buy")
 
 [node name="Button" type="Button" parent="LetIn" unique_id=1103025720]
@@ -86,7 +86,7 @@ offset_bottom = 36.595062
 metadata/_edit_use_anchors_ = true
 
 [node name="Gun" type="AnimatedSprite2D" parent="." unique_id=1118914663]
-position = Vector2(585.00006, 743)
+position = Vector2(577, 716)
 scale = Vector2(0.3909121, 0.39091212)
 sprite_frames = SubResource("SpriteFrames_2t64r")
 frame_progress = 0.648384

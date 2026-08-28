@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://edl42pa0vnta"]
 
+[ext_resource type="Script" uid="uid://dk75qlcfv2d83" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://bqkmlmxeirq8d" path="res://scenes/elevator_doors.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://kg7byoopoh8" path="res://scenes/character_slim.tscn" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://b647bmsad0dgh" path="res://assets/elevator_background.png" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dhcncyy2m3d74" path="res://scenes/choosing_overlay.tscn" id="4_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=39994423]
+script = ExtResource("1_iywne")
 
 [node name="elevator_doors" parent="." unique_id=464449516 instance=ExtResource("1_uwrxv")]
 z_index = 5
@@ -19,10 +21,11 @@ scale = Vector2(1.0000612, 1.0000612)
 texture = ExtResource("3_lnu2h")
 
 [node name="Character_slim" parent="." unique_id=1336122263 instance=ExtResource("2_yqjtg")]
-z_index = -1
-position = Vector2(581, 373)
+z_index = 3
+position = Vector2(581, 388)
 scale = Vector2(5.02, 5.02)
 
 [node name="choosing" parent="." unique_id=1476094477 instance=ExtResource("4_lbhrr")]
 visible = false
 z_index = 6
+position = Vector2(5, 8)
