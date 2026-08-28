@@ -10,7 +10,7 @@ script = ExtResource("1_6c43c")
 
 [node name="Boss" type="Sprite2D" parent="." unique_id=383166654]
 z_index = 1
-position = Vector2(920.6666, 347.5)
+position = Vector2(944.6667, 347.50003)
 rotation = 0.007432904
 scale = Vector2(5.6111107, 5.6111107)
 texture = ExtResource("1_dfmmm")
@@ -42,3 +42,13 @@ Luckiy, you can tell who is real and who is fake by how they dress.
 I will update you! 
 As CEO, I leave you in charnge of the elevators. 
 Dont let those aliens on it, or you will be fired!"
+
+[node name="Label2" type="Label" parent="." unique_id=2078782896]
+offset_left = 37.0
+offset_top = 586.0
+offset_right = 448.41556
+offset_bottom = 642.16437
+scale = Vector2(1.325, 1.325)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_yuhpm")
+text = "Press Space to continue"

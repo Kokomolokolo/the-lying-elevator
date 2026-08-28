@@ -20,7 +20,6 @@ func is_character_allowed() -> bool:
 	return true
 
 func _on_button_pressed() -> void:
-	print("JLKDFKJ")
 	var tween := create_tween()
 	tween.tween_property(gun, "position", target_position, move_duration)
 

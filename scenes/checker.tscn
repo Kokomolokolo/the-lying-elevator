@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://u5irngimslt2"]
+
+[ext_resource type="Script" path="res://scripts/checker.gd" id="1_ix7xs"]
+
+[node name="checker" type="Node2D" unique_id=1644045210]
+script = ExtResource("1_ix7xs")
