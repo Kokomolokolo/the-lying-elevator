@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://nosnbjjvk1o0"]
+
+[ext_resource type="Script" uid="uid://b18q5ihxf131d" path="res://scripts/boss.gd" id="1_neq0i"]
+[ext_resource type="Texture2D" uid="uid://ci5t4cwlocyio" path="res://assets/boss.png" id="2_jncid"]
+
+[node name="Boss" type="Node2D" unique_id=1676899686]
+position = Vector2(-385, -22)
+script = ExtResource("1_neq0i")
+
+[node name="Boss" type="Sprite2D" parent="." unique_id=702164895]
+z_index = 1
+position = Vector2(944.6667, 347.50003)
+rotation = 0.007432904
+scale = Vector2(5.6111107, 5.6111107)
+texture = ExtResource("2_jncid")

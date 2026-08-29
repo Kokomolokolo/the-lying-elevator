@@ -1,19 +1,12 @@
 [gd_scene format=3 uid="uid://b7tr635cffmws"]
 
 [ext_resource type="Script" uid="uid://bulkiv5eaktct" path="res://scripts/explaning.gd" id="1_6c43c"]
-[ext_resource type="Texture2D" uid="uid://ci5t4cwlocyio" path="res://assets/boss.png" id="1_dfmmm"]
 [ext_resource type="Texture2D" uid="uid://d1rw7o6w72nhd" path="res://assets/title_screen/title_screen_wide.png" id="3_yuhpm"]
+[ext_resource type="PackedScene" uid="uid://nosnbjjvk1o0" path="res://scenes/boss.tscn" id="4_hbrq0"]
 [ext_resource type="FontFile" uid="uid://bopciscuog6tq" path="res://assets/PixelOperator8-Bold.ttf" id="4_yuhpm"]
 
 [node name="explaning" type="Node2D" unique_id=809405776]
 script = ExtResource("1_6c43c")
-
-[node name="Boss" type="Sprite2D" parent="." unique_id=383166654]
-z_index = 1
-position = Vector2(944.6667, 347.50003)
-rotation = 0.007432904
-scale = Vector2(5.6111107, 5.6111107)
-texture = ExtResource("1_dfmmm")
 
 [node name="TitleScreenWide" type="Sprite2D" parent="." unique_id=659549710]
 position = Vector2(575, 311.00003)
@@ -52,3 +45,6 @@ scale = Vector2(1.325, 1.325)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("4_yuhpm")
 text = "Press Space to continue"
+
+[node name="Boss" parent="." unique_id=1676899686 instance=ExtResource("4_hbrq0")]
+position = Vector2(16, -8)

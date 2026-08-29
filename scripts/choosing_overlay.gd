@@ -5,9 +5,11 @@ extends Node2D
 @onready var character: Node2D = $"../Character_slim"
 
 @export var target_position: Vector2 = Vector2(592, 553)
+@export var start_pos: Vector2 = Vector2(577, 716)
 @export var move_duration: float = 1.0
 
 signal allow_pressed
+signal deny_pressed
 
 var forbidden_top_type: String = "tshirt"
 var forbidden_color: Color = Color.WHITE
@@ -21,6 +23,7 @@ func is_character_allowed() -> bool:
 	return true
 
 func _on_button_pressed() -> void:
+	deny_pressed.emit()
 	gun.visible = true
 	var tween := create_tween()
 	tween.tween_property(gun, "position", target_position, move_duration)
@@ -38,10 +41,11 @@ func _on_button_pressed() -> void:
 
 func _on_button_pressed_in() -> void:
 	allow_pressed.emit()
-	if is_character_allowed():
-		print("LetIn")
-	else:
-		print("not allowed")
 	
 	# Hier irgendwie signal das der spieler rein kommt
 	
+
+func reset():
+	gun.stop()
+	gun.position = start_pos
+	human_explosion.visible = false

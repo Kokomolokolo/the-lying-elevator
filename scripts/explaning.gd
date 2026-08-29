@@ -1,5 +1,5 @@
 extends Node2D
-@onready var boss: Sprite2D = $Boss
+@onready var boss: Node2D = $Boss
 
 @onready var label: Label = $Label
 
@@ -26,11 +26,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var tween := create_tween()
-	var rot = randf_range(-0.3, 0.3)
-	
-	tween.tween_property(boss, "rotation", rot, 0.7)
-
+	pass
 	
 
 func _unhandled_input(event: InputEvent) -> void:

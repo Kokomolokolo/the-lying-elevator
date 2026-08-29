@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://kg7byoopoh8" path="res://scenes/character_slim.tscn" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://b647bmsad0dgh" path="res://assets/elevator_background.png" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dhcncyy2m3d74" path="res://scenes/choosing_overlay.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://nosnbjjvk1o0" path="res://scenes/boss.tscn" id="6_p57ef"]
+[ext_resource type="FontFile" uid="uid://bopciscuog6tq" path="res://assets/PixelOperator8-Bold.ttf" id="7_u5sy4"]
 
 [node name="Game" type="Node2D" unique_id=39994423]
 script = ExtResource("1_iywne")
@@ -29,3 +31,18 @@ scale = Vector2(5.02, 5.02)
 visible = false
 z_index = 6
 position = Vector2(5, 8)
+
+[node name="Boss" parent="." unique_id=1676899686 instance=ExtResource("6_p57ef")]
+position = Vector2(-109, 72.99999)
+scale = Vector2(0.885, 0.885)
+
+[node name="boss_text" type="Label" parent="Boss" unique_id=912127824]
+z_index = 14
+offset_left = 244.0678
+offset_top = 16.949158
+offset_right = 492.75848
+offset_bottom = 34.49164
+scale = Vector2(2.195, 2.195)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_u5sy4")
+text = "Test"
