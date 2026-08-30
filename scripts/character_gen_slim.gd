@@ -69,7 +69,7 @@ func rand_sneaker_or_boots() -> void:
 	shoes.modulate = appearance_data["shoe_color"]
 
 func rand_pants() -> void:
-	if randf() < 0.9: # 10% das ohne Hose
+	if randf() < 08: # 10% das ohne Hose
 		appearance_data["pants_color"] = pants_color.pick_random()
 		pants.texture = textures["pants"]
 		pants.modulate = appearance_data["pants_color"]
@@ -81,7 +81,7 @@ func rand_pants() -> void:
 func rand_hair() -> void:
 	appearance_data["hair_color"] = hair_color.pick_random()
 	
-	if randf() < 0.9:
+	if randf() < 0.7:
 		appearance_data["hair_type"] = "hair"
 		hair.texture = textures[appearance_data["hair_type"]]
 	else:
@@ -90,7 +90,7 @@ func rand_hair() -> void:
 	hair.modulate = appearance_data["hair_color"]
 
 func rand_tag() -> void:	
-	if randf() < 0.8: # 20% für einen tag
+	if randf() < 0.6: # 20% für einen tag
 		appearance_data["tag"] = null
 		tag.visible = false
 	else:
@@ -101,7 +101,7 @@ func rand_tag() -> void:
 func rand_top() -> void:
 	var roll: float = randf()
 
-	if roll < 0.10:
+	if roll < 0.20:
 		appearance_data["top_type"] = "none"
 		appearance_data["top_color"] = Color.WHITE
 		tshirt.visible = false

@@ -36,13 +36,75 @@ position = Vector2(5, 8)
 position = Vector2(-109, 72.99999)
 scale = Vector2(0.885, 0.885)
 
-[node name="boss_text" type="Label" parent="Boss" unique_id=912127824]
+[node name="boss_text3" type="Label" parent="Boss" unique_id=912127824]
+visible = false
 z_index = 14
-offset_left = 244.0678
-offset_top = 16.949158
-offset_right = 492.75848
-offset_bottom = 34.49164
-scale = Vector2(2.195, 2.195)
+offset_left = 216.94913
+offset_top = 19.209042
+offset_right = 465.63983
+offset_bottom = 36.751522
+scale = Vector2(1.815, 1.815)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("7_u5sy4")
 text = "Test"
+metadata/_edit_use_anchors_ = true
+
+[node name="boss_text" type="RichTextLabel" parent="Boss" unique_id=865520389]
+z_index = 9
+offset_left = 192.09041
+offset_top = 57.62713
+offset_right = 482.49646
+offset_bottom = 259.32736
+scale = Vector2(2.14, 2.14)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "Test
+"
+
+[node name="gameover" type="Label" parent="." unique_id=2050279117]
+visible = false
+z_index = 14
+offset_left = 287.0
+offset_top = 269.0
+offset_right = 535.6907
+offset_bottom = 286.54248
+scale = Vector2(2.495, 2.495)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_u5sy4")
+text = "Test"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="subtext" type="Label" parent="gameover" unique_id=623955543]
+z_index = 14
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.11120364
+anchor_top = 2.398986
+anchor_right = 0.111203626
+anchor_bottom = 2.398986
+offset_right = 248.6907
+offset_bottom = 17.54248
+scale = Vector2(0.745, 0.745)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_u5sy4")
+text = "Test"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="streak" type="Label" parent="." unique_id=80243142]
+visible = false
+z_index = 14
+offset_left = 68.0
+offset_top = 613.0
+offset_right = 332.0
+offset_bottom = 630.5425
+scale = Vector2(1.765, 1.765)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_u5sy4")
+text = "0 correct in a row!"
+metadata/_edit_use_anchors_ = true

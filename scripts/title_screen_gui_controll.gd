@@ -22,8 +22,8 @@ func _animate_scale(btn: TextureButton, target_scale: Vector2) -> void:
 func _on_play_pressed() -> void:
 	$PlayButton/AudioStreamPlayer.play()
 	await $PlayButton/AudioStreamPlayer.finished
-	get_tree().change_scene_to_file("res://scenes/explaning.tscn")
-
+	Engine.get_main_loop().change_scene_to_file("res://scenes/explaning.tscn")
+	
 func _on_quit_pressed() -> void:
 	$QuitButton/AudioStreamPlayer.play()
 	await $QuitButton/AudioStreamPlayer.finished

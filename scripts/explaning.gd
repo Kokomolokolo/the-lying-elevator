@@ -12,11 +12,13 @@ var dialog = [
 	tell who is real 
 	and who is fake by 
 	how they dress.",
-	"I will update you! 
+	"I will give you intel! 
 	As CEO, I leave you in 
 	charnge of the elevators.",
 	"Dont let those aliens
-	on it,or you will be fired!", 
+	on it,or you will be fired!",
+	"And remember what 
+	I tell you about them", 
 	"Trust no one!"]
 
 # Called when the node enters the scene tree for the first time.

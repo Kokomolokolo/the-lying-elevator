@@ -5,7 +5,8 @@ extends Node2D
 @onready var choosing: Node2D = $choosing
 @onready var character: Node2D = $Character_slim
 @onready var boss: Node2D = $Boss
-@onready var boss_text: Label = $Boss/boss_text
+@onready var boss_text2: Label = $Boss/boss_text3
+@onready var boss_text: RichTextLabel = $Boss/boss_text
 
 var start_pos = Vector2(588, 388)
 var target_pos = Vector2(-120, 760)
@@ -55,8 +56,9 @@ func boss_visit() -> void:
 	# Boss bleibt 3.5 Sekunden sichtbar
 	get_tree().create_timer(3.5).timeout.connect(func():
 		elevator_doors.close_doors()
-		get_tree().create_timer(1.).timeout.connect(func():
+		get_tree().create_timer(0.8).timeout.connect(func():
 			boss.visible = false
+			streak.visible = true
 			guest_counter = 0
 			open_elevator_for_next_guest()
 			)
@@ -92,8 +94,12 @@ func _on_allow_received() -> void:
 	tween.tween_property(character, "position", target_pos, 1.0)
 	
 	tween.finished.connect(func():
-		elevator_doors.close_doors()
-		_on_guest_action_finished()
+		if not allowed:
+			game_over("alien")
+		else:
+			add_to_streak()
+			elevator_doors.close_doors()
+			_on_guest_action_finished()
 	)
 
 func _on_deny_pressed() -> void:
@@ -101,16 +107,61 @@ func _on_deny_pressed() -> void:
 	is_processing_choice = true
 	#choosing.visible = false
 	
-	var allowed = is_character_allowed(character.appearance_data)
-	print("Ergebnis: ", "Falsch! Mensch abgewiesen" if allowed else "Richtig! Alien abgewiesen")
-	
-	# Tür schließt direkt
-	get_tree().create_timer(2.3).timeout.connect(func():
-		choosing.visible = false
-		elevator_doors.close_doors()
-		_on_guest_action_finished()
-		choosing.reset()
+	var human = is_character_allowed(character.appearance_data)
+	print("Ergebnis: ", "Falsch! Mensch abgewiesen" if human else "Richtig! Alien abgewiesen")
+	if human:
+		get_tree().create_timer(1.0).timeout.connect(choosing.play_human_explosion)
+	else:
+		get_tree().create_timer(1.0).timeout.connect(choosing.play_alien_explosion)
+	# Tür schließt
+	get_tree().create_timer(2.2).timeout.connect(func():
+		if human:
+			game_over("human")
+		else:
+			add_to_streak()
+			choosing.visible = false
+			elevator_doors.close_doors()
+			_on_guest_action_finished()
+			choosing.reset()
 	)
+@onready var gameover: Label = $gameover
+@onready var subtext: Label = $gameover/subtext
+
+func game_over(type: String):
+	if type == "human":
+		gameover.visible = true
+		gameover.text = "Game Over"
+		subtext.text = "You killed a human!"
+	else:
+		gameover.visible = true
+		gameover.text = "Game Over"
+		subtext.text = "You let in a alien!"
+	get_tree().create_timer(3.).timeout.connect(func():
+		get_tree().change_scene_to_file("res://scenes/game.tscn")
+	)
+@onready var streak: Label = $streak
+var streak_number = 0
+func add_to_streak() -> void:
+	streak_number += 1
+	streak.text = str(streak_number) + " correct in a row!"
+	
+	# Pivot-Punkt in die Mitte setzen, damit Drehung & Skalierung aus der Mitte geschehen
+	streak.pivot_offset = streak.size / 2.0
+	
+	var target_scale = Vector2(1.5, 1.5) # Finale/Größere Zielgröße
+	var pop_scale = Vector2(2.0, 2.0)    # Maximaler Plopp-Effekt
+	var random_rot = randf_range(-0.15, 0.15) # Leichte temporäre Drehung
+	
+	# Paralleles Tweening für simultanes Rotieren & Skalieren
+	var tween := create_tween().set_parallel(true)
+	
+	# 1. Aufploppen + kurz leicht eindrehen
+	tween.tween_property(streak, "scale", pop_scale, 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EaseType.EASE_OUT)
+	tween.tween_property(streak, "rotation", random_rot, 0.1)
+	
+	# 2. Zurückfedern zur Zielgröße + Drehung wieder exakt auf 0 (gerade) zurücksetzen
+	tween.chain().tween_property(streak, "scale", target_scale, 0.2).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EaseType.EASE_OUT)
+	tween.parallel().tween_property(streak, "rotation", 0.0, 0.2)
 
 func _on_guest_action_finished() -> void:
 	guest_counter += 1
@@ -139,61 +190,72 @@ func is_character_allowed(data: Dictionary) -> bool:
 	return true
 
 func generate_boss_rules() -> String:
-	for key in forbidden_rules.keys():
-		forbidden_rules[key] = null
-		
+	# Die Reset-Schleife wurde entfernt. Alte Regeln bleiben in 'forbidden_rules' gespeichert!
+	
 	var category = randi() % 6
+	
 	match category:
 		0:
 			if randf() < 0.5:
 				forbidden_rules["has_tag"] = true
-				active_boss_message = "BOSS: 'The survivors turned in all their ID tags. 
-				Anyone still wearing a tag is an alien!'"
+				active_boss_message = "The survivors turned in all their ID tags. Anyone still wearing a [b]tag[/b] is an alien!"
 			else:
 				var forbidden_tag = ["tag_blue", "tag_red", "tag_orange", "tag_green"].pick_random()
 				forbidden_rules["tag_color"] = forbidden_tag
 				var tag_name = forbidden_tag.replace("tag_", "").capitalize()
-				active_boss_message = "BOSS: 'Warning! Aliens hacked the " + tag_name + " tags. 
-				Do NOT let anyone with that tag in!'"
+				active_boss_message = "Warning! Aliens hacked the [b]" + tag_name + " tags[/b]. Do NOT let anyone with that tag in!"
 		1:
 			if randf() < 0.4:
 				forbidden_rules["has_top"] = false
-				active_boss_message = "BOSS: 'Aliens tend to forget their clothes. 
-				Anyone shirtless gets rejected!'"
+				active_boss_message = "Aliens tend to forget their clothes. Anyone [b]shirtless[/b] gets rejected!"
 			elif randf() < 0.7:
-				forbidden_rules["top_type"] = ["hoodie", "tshirt"].pick_random()
-				active_boss_message = "BOSS: 'Shapeshifters currently prefer wearing " + forbidden_rules["top_type"] + "s. 
-				No " + forbidden_rules["top_type"] + "s today!'"
+				var t_type = ["hoodie", "tshirt"].pick_random()
+				forbidden_rules["top_type"] = t_type
+				active_boss_message = "Shapeshifters currently prefer wearing " + t_type + "s. No [b]" + t_type + "s[/b] today!"
 			else:
-				forbidden_rules["top_color"] = colors.pick_random()
-				active_boss_message = "BOSS: 'Alien blood stains clothing. 
-				Anyone wearing a top with this exact color is infected!'"
+				var t_color = colors.pick_random()
+				forbidden_rules["top_color"] = t_color
+				active_boss_message = "Alien blood stains clothing. Anyone wearing a [b]" + get_color_name(t_color) + " top[/b] is infected!"
 		2:
 			if randf() < 0.5:
 				forbidden_rules["hair_type"] = "crazy_hair"
-				active_boss_message = "BOSS: 'Brain parasites cause wild hair growth! 
-				Reject anyone with crazy hair!'"
+				active_boss_message = "Brain parasites cause wild hair growth! Reject anyone with [b]crazy hair[/b]!"
 			else:
-				forbidden_rules["hair_color"] = hair_color.pick_random()
-				active_boss_message = "BOSS: 'Radiation alters hair color. 
-				Watch out for people with this hair color!'"
+				var h_color = hair_color.pick_random()
+				forbidden_rules["hair_color"] = h_color
+				active_boss_message = "Radiation alters hair color. Watch out for people with [b]" + get_color_name(h_color) + " hair[/b]!"
 		3:
 			forbidden_rules["has_pants"] = false
-			active_boss_message = "BOSS: 'I don't care if it's mutation or panic: 
-				anyone without pants stays outside!'"
+			active_boss_message = "I don't care if it's mutation or panic: anyone [b]without pants[/b] stays outside!"
 		4:
 			if randf() < 0.5:
-				forbidden_rules["shoes"] = ["sneaker", "boots"].pick_random()
-				active_boss_message = "BOSS: 'Alien tentacles don't fit into " + forbidden_rules["shoes"] + ". 
-				Those shoes are banned!'"
+				var s_type = ["sneaker", "boots"].pick_random()
+				forbidden_rules["shoes"] = s_type
+				active_boss_message = "Alien tentacles don't fit into " + s_type + ". Those [b]" + s_type + "[/b] are banned!"
 			else:
-				forbidden_rules["shoe_color"] = colors.pick_random()
-				active_boss_message = "BOSS: 'Aliens stole shoes from the cafeteria staff! 
-				Watch out for this shoe color:" + forbidden_rules["shoe_color"] + "'"
+				var s_color = colors.pick_random()
+				forbidden_rules["shoe_color"] = s_color
+				active_boss_message = "Aliens stole shoes from the cafeteria staff!Watch out for [b]" + get_color_name(s_color) + " shoes[/b]!"
 		5:
 			forbidden_rules["has_pants"] = false
 			forbidden_rules["has_tag"] = true
-			active_boss_message = "BOSS: 'Security Code Red! No one without pants AND no one wearing a tag gets through!'"
+			active_boss_message = "Security Code Red! No one [b]without pants[/b] AND no one wearing a [b]tag[/b] gets through!"
 
 	print(active_boss_message)
 	return active_boss_message
+
+
+func get_color_name(c: Color) -> String:
+	if c == Color.RED: return "Red"
+	if c == Color.WHITE: return "White"
+	if c == Color.BLUE: return "Blue"
+	if c == Color.GREEN: return "Green"
+	if c == Color.VIOLET: return "Violet"
+	if c == Color.MAROON: return "Maroon"
+	if c == Color.YELLOW: return "Yellow"
+	if c == Color.ORANGE: return "Orange"
+	if c == Color.BLACK: return "Black"
+	if c == Color.DARK_BLUE: return "Dark Blue"
+	if c == Color.BEIGE: return "Beige"
+	if c == Color.LIGHT_BLUE: return "Light Blue"
+	return "Unknown Color"
